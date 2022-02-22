@@ -1,0 +1,8 @@
+
+/**
+ * Laravel Environment Selector.
+ */
+$file = json_decode(file_get_contents(base_path('env-selector.json')), true);
+if (file_exists(base_path($file['environment']))) {
+    $app->loadEnvironmentFrom($file['environment']);
+}
