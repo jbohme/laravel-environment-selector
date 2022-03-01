@@ -53,7 +53,7 @@ class PublishSelector extends Command
             return;
         }
         $config = json_decode(file_get_contents(base_path('env-selector.json')), true);
-        if ($config['publish']) {
+        if ($config['publish'] && $this->checkApp()) {
             $this->warn('The bootstrap/app.php has already been modified.');
             return;
         }
@@ -80,19 +80,27 @@ class PublishSelector extends Command
                 $this->warn('Could not find return statement in app.php.');
             } else {
                 $selector = file(dirname(__DIR__) . '/Stubs/selector.stub');
-
                 array_splice($file, $needle, 0, $selector);
                 if (!File::put($file_path, $file)) {
                     $this->error('Could not bootstrap app.php');
                 } else {
                     $this->comment('App.php bootstrapped');
                     $config['publish'] = true;
-                    File::put(base_path('env-selector.json'), json_encode($config, JSON_PRETTY_PRINT));
+                    File::put(base_path('env-selector.json'), json_encode($config, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
                 }
             }
         } catch (\Throwable $exception) {
             $this->error($exception->getMessage());
             Log::critical($exception->getMessage(), ['Exception' => $exception]);
         }
+    }
+
+    /**
+     * Checks if app/bootstrap.php has been modified.
+     * @return bool
+     */
+    private function checkApp(): bool
+    {
+        return strpos(file_get_contents(base_path('bootstrap/app.php')), 'env-selector.json') != false;
     }
 }
