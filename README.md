@@ -1,6 +1,8 @@
-<h1 style="text-align: center"><img src="icon.png" alt="MarineGEO circle logo" style="height: 200px; width:200px;"/>
-<br>
-<p>Laravel Environment Selector</p></h1>
+<h1><img src="icon.png" style="height: 100px; width:100px;"/> Laravel Environment Selector</h1>
+
+[![Latest Stable Version](http://poser.pugx.org/jbohme/laravel-environment-selector/v)](https://packagist.org/packages/jbohme/laravel-environment-selector) [![Total Downloads](http://poser.pugx.org/jbohme/laravel-environment-selector/downloads)](https://packagist.org/packages/jbohme/laravel-environment-selector) [![License](http://poser.pugx.org/jbohme/laravel-environment-selector/license)](https://packagist.org/packages/jbohme/laravel-environment-selector)
+[![PHP Version Require](http://poser.pugx.org/jbohme/laravel-environment-selector/require/php)](https://packagist.org/packages/jbohme/laravel-environment-selector)
+
 
 This package is intended to make it easier to choose the .env. You can have *".env.testing"*, *".env.development"* among others.
 
